@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,18 +7,27 @@ int main (int argc, char * argv[]){
     FILE * entrada;
     FILE * salida;
     char * nombreDeArchivos;
-    int n = argc-1;
-    char ** listaDeArchivos;
-    if(argv[1] == "-r" && argc < 3 || argc <2 ){
-        perror("no hay suficientes argumentos");
+    int n = argc;
+    char buffer[1048];
+    char *listaDeArchivos[1048];
+
+    if(argc<2){
+        perror("No hay suficientes argumentos");
         exit(1);
     }
-    for (int i = 0; i < 1; i++)
+
+    for(int i=0; i<n; i++)
     {
-        *(listaDeArchivos+i)= argv[i]; 
-        printf(*(listaDeArchivos+i));
+        strcpy(buffer, argv[i]);
+    	listaDeArchivos[i] = strdup(buffer);
     }
     
+    for(int i=1; i<n; i++){
+        printf("%s", "argumento: ");
+    	printf("%s", listaDeArchivos[i]);
+        printf("%s", " ");
+	
+    }
 
     return 0;
 }
